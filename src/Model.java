@@ -8,7 +8,7 @@ import javax.swing.event.ChangeListener;
 
 /**
  * Holds all of the board data
- * @author sukhvirsingh
+ * @author sukhvir singh & edrees osman
  *
  */
 public class Model {
@@ -142,7 +142,15 @@ public class Model {
                     }
                     else{
                         i--;
-                        smallPits[i]++;
+                        // if last stone is put into an empty pit on your side,
+                        // capture stone as well as opponent's stones in opposite pit
+                        if(count == 1 && smallPits[i] == 0) {
+                            int capture = smallPits[i+6] + 1;
+                            largePits[0] += capture;
+                            smallPits[i+6] = 0;
+                        } else {
+                            smallPits[i]++;
+                        }
                     }
 
                 }
@@ -169,7 +177,16 @@ public class Model {
                     }
                     else{
                         i++;
-                        smallPits[i]++;
+                        // if last stone is put into an empty pit on your side,
+                        // capture stone as well as opponent's stones in opposite pit
+                        if(count == 1 && smallPits[i] == 0) {
+                            int capture = smallPits[i-6] + 1;
+                            largePits[1] += capture;
+                            smallPits[i-6] = 0;
+                        } else {
+                            smallPits[i]++;
+                        }
+
                     }
 
                 }
